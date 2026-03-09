@@ -4,8 +4,9 @@
 // env vars are injected directly — no .env.local file needed.
 import { loadEnvConfig } from "@next/env";
 if (process.env.NODE_ENV !== "production") {
-  const { config: dotenvConfig } = await import("dotenv");
-  dotenvConfig({ path: ".env.local", override: true });
+  // eslint-disable-next-line @typescript-eslint/no-require-imports
+  const dotenv = require("dotenv");
+  dotenv.config({ path: ".env.local", override: true });
 }
 loadEnvConfig(process.cwd());
 
